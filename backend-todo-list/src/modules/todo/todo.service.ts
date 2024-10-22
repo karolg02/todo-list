@@ -11,10 +11,11 @@ export class TodoService {
   constructor(private readonly prisma: PrismaService) {
   }
 
-  async listTodo(filter: TodoFilterDto){
+  async listTodo(filter: TodoFilterDto, userid: number){
     return this.prisma.todo.findMany({
       where: {
-        done: filter.isDone
+        done: filter.isDone,
+        userId: userid,
       },
       orderBy: {
         [filter.sortBy]: filter.sortOrder,
@@ -22,12 +23,13 @@ export class TodoService {
     });
   }
 
-  async addTodo(data: CreateTodoDto){
+  async addTodo(data: CreateTodoDto, userid: number){
     return this.prisma.todo.create({
       data: {
         title: data.title,
         content: data.content,
         done: data.done,
+        userId: userid,
       }
     })
   }
@@ -49,10 +51,11 @@ export class TodoService {
     });
   }
 
-  get(id: number) {
+  get(id: number, userid: number) {
     return  this.prisma.todo.findUnique({
       where : {
         id,
+        userId: userid,
       }
     });
   }
