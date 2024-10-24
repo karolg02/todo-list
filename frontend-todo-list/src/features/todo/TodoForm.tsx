@@ -1,13 +1,20 @@
 import {TodoFormValues} from "../../types/TodoFormValues.ts";
 import {Button, Checkbox, Group, Paper, Stack, Textarea, TextInput} from "@mantine/core";
 import {useTodoForm} from "./hooks/useTodoForm.ts";
+import {createTodo} from "./api/create-todo.ts";
+import {notificationAddedTodo} from "./notificationAddedTodo.ts";
 
 export const TodoForm = () => {
 
     const form = useTodoForm();
 
-    const handleSubmit = (vals: TodoFormValues) => {
-        console.log(vals);
+    const handleSubmit =async (vals: TodoFormValues) => {
+        try {
+            await createTodo(vals);
+            notificationAddedTodo();
+        } catch (error) {
+            console.error(error);
+        }
     }
     return (
         <Paper shadow="xs" p="xl">

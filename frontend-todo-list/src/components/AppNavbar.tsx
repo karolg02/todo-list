@@ -8,12 +8,12 @@ export const AppNavbar = () => {
     return (
         <div>
             <NavLink onClick={() => navigate("/todo")}
-                href="#required-for-focus"
+                //href="#required-for-focus"
                 label="Lista TODO"
                 leftSection={<IconListCheck size="1rem" stroke={1.5} />}
             />
             <NavLink onClick={() => navigate("/todo/new")}
-                href="#required-for-focus"
+                //href="#required-for-focus"
                 label="Dodaj TODO"
                 leftSection={<IconPencilPlus size="1rem" stroke={1.5} />}
             />
