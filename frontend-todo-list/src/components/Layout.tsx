@@ -2,7 +2,6 @@ import {Outlet} from "react-router-dom";
 import {AppNavbar} from "./AppNavbar.tsx";
 import {AppShell, Burger} from "@mantine/core";
 import {useDisclosure} from "@mantine/hooks";
-import {Notifications} from "@mantine/notifications";
 
 export const Layout = ()=>{
     const [opened, { toggle }] = useDisclosure();
@@ -32,7 +31,6 @@ export const Layout = ()=>{
             </AppShell.Navbar>
 
             <AppShell.Main>
-                <Notifications></Notifications>
                 <Outlet/>
             </AppShell.Main>
         </AppShell>

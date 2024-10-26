@@ -5,6 +5,7 @@ import {TodoForm} from "./todo/TodoForm.tsx";
 import {ErrorPage} from "./error/ErrorPage.tsx";
 import {LoginPage} from "./login/LoginPage.tsx";
 import {useIsLogged} from "../hooks/useIsLogged.ts";
+import {TodoEdit} from "./todo/TodoEdit.tsx";
 
 const publicRoutes: RouteObject[] = [
     {
@@ -37,10 +38,12 @@ const privateRoutes: RouteObject[] = [
                 path: '/todo/:id',
                 element: <TodoForm/>
             },{
+                path: '/todo/edit/:id',
+                element: <TodoEdit/>
+            },{
                 path: "*",
                 element: <ErrorPage/>
             }
-
         ]
     }
 ]

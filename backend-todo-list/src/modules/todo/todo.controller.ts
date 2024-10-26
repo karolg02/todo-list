@@ -3,8 +3,6 @@ import {
   Controller,
   Delete,
   Get,
-  HttpCode,
-  HttpStatus,
   Param,
   ParseIntPipe,
   Post,
@@ -47,14 +45,15 @@ export class TodoController {
   }
 
   @Delete(":id")
-  @HttpCode(HttpStatus.NO_CONTENT)
+  //@HttpCode(HttpStatus.NO_CONTENT)
   @UseGuards(TokenGuard)
-  async deleteTodo(@Param("id", ParseIntPipe) id:number, @UserID() userid: number){
+  async deleteTodo(@Param("id", ParseIntPipe) id: number, @UserID() userid: number) {
     const todo = await this.todoService.get(id, userid);
-    if(!todo) throw new TodoNotfoundException();
+    if (!todo) throw new TodoNotfoundException();
 
     await this.todoService.deleteToDo(id);
   }
+
 
   @Put(":id")
   @UseGuards(TokenGuard)

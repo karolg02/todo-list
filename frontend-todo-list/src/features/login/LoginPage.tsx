@@ -4,6 +4,7 @@ import {Button, Stack, TextInput} from "@mantine/core";
 import {loginErrorNotification} from "./notifications.ts";
 import {login} from "./api/login.ts";
 import {useNavigate} from "react-router-dom";
+import {Notifications} from "@mantine/notifications";
 
 type LoginFormType = { // do formularza
     email: string,
@@ -39,6 +40,7 @@ export const LoginPage: FC = () => {
                     <Button type="submit">Login</Button>
                 </Stack>
             </form>
+            <Notifications/>
         </div>
     );
 }
