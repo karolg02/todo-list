@@ -4,22 +4,36 @@ import {deleteTodo} from "./api/deleteTodo.ts";
 import {useNavigate} from "react-router-dom";
 import {Notifications} from "@mantine/notifications";
 import {changeTodoDone} from "./api/changeTodoDone.ts";
-import {IconTrash} from "@tabler/icons-react"; // Import useNavigate
+import {IconTrash} from "@tabler/icons-react";
+import {useState} from "react";
+import './TodoStyle.css';
 
 interface TodoListItemProps {
     item: TodoType;
-    onToggleDone: (id: number) => void;
+    onDelete: () => void;
 }
 
-export const TodoListItem = ({ item }: TodoListItemProps) => {
-    const navigate = useNavigate(); // Initialize navigate
+const DEFAULT_IMAGE_URL = "https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png";
+
+export const TodoListItem = ({ item,onDelete }: TodoListItemProps) => {
+    const navigate = useNavigate();
+    const [isDeleting, setIsDeleting] = useState(false);
+
+    const handleDelete = async () => {
+        setIsDeleting(true);
+        setTimeout(async () => {
+            await deleteTodo(item.id);
+            onDelete();
+        }, 500);
+    };
 
     return (
-        <Card shadow="sm" padding="lg" radius="md" withBorder>
+        <Card className={isDeleting ? "deletingCard" : ""}
+            shadow="sm" padding="lg" radius="md" withBorder>
             <Notifications style={{ position: 'fixed', bottom: 0, right: 0 , border: "none"}} />
             <Card.Section>
                 <Image
-                    src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"
+                    src={DEFAULT_IMAGE_URL}
                     height={200}
                     alt="No way!"
                 />
@@ -58,7 +72,7 @@ export const TodoListItem = ({ item }: TodoListItemProps) => {
                         onClick={() => navigate(`/todo/edit/${item.id}`)}
                         variant="gradient"
                         gradient={item.done ? { from: 'grey', to: 'grey', deg: 270 } : { from: 'red', to: 'blue', deg: 270 }}
-                        size="md"// Navigate to edit page
+                        size="md"
                 >
                     Edytuj
                 </Button>
@@ -69,7 +83,7 @@ export const TodoListItem = ({ item }: TodoListItemProps) => {
                             width: "20%",
                         }}
                         gradient={{ from: 'pink', to: 'red', deg: 270 }}
-                        onClick={() => deleteTodo(item.id)}
+                        onClick={handleDelete}
 
                 >
                     <IconTrash size="1.2rem" stroke={1.5}/>

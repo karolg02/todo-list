@@ -30,6 +30,15 @@ export const LoginPage: FC = () => {
         }
     };
 
+    const handleRegister = ()=>{
+        try{
+            navigate('/register');
+        } catch (error) {
+            console.error("Error during login:", error);
+            loginErrorNotification();
+        }
+    }
+
 
     return (
         <div
@@ -49,10 +58,10 @@ export const LoginPage: FC = () => {
                         mb="lg"
                         style={{ textAlign: 'center' }}
                     >
-                        Witaj w yourTodo.com
+                        Witaj w YourTodo
                     </Text>
                     <form onSubmit={form.onSubmit(values => handleSubmit(values))}>
-                        <Stack style={{minWidth: "18vW"}}>
+                        <Stack style={{minWidth: "20vW"}}>
                             <TextInput
                                 required
                                 label="Email"
@@ -80,8 +89,8 @@ export const LoginPage: FC = () => {
                             </Stack>
                             <Button
                                 variant="gradient"
-                                gradient={{ from: 'blue', to: 'green', deg: 270 }}
-                                onClick={() => console.log("Rejestracja XD")}
+                                gradient={{ from: 'red', to: 'green', deg: 270 }}
+                                onClick={() => handleRegister()}
                                 fullWidth
                             >
                                 Zarejestruj się

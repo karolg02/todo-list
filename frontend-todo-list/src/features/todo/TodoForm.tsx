@@ -43,7 +43,8 @@ export const TodoForm = () => {
                         <Button style={{textAlign:"right"}}
                             variant="gradient"
                             gradient={{ from: 'blue', to: 'green', deg: 270 }}
-                            type="submit">Dodaj Todo</Button>
+                            type="submit">Dodaj Todo
+                        </Button>
                     </div>
                 </Stack>
             </form>

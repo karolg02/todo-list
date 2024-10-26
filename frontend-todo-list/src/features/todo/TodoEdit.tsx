@@ -31,9 +31,9 @@ export const TodoEdit = () => {
         try {
             const success = await editTodo(Number(id), vals);
             if (success) {
-                Notifications.show({ title: "Success", message: "Todo updated successfully",autoClose: 2000, });
+                Notifications.show({color: "green", title: "Sukces", message: "Udało się zaktualizować Todo!",autoClose: 2000, });
             } else {
-                Notifications.show({ title: "Error", message: "Failed to update todo",autoClose: 2000, });
+                Notifications.show({color: "red", title: "Błąd", message: "Nie udało się zaktualizować Todo!",autoClose: 2000, });
             }
         } catch (error) {
             console.error(error);
@@ -63,7 +63,11 @@ export const TodoEdit = () => {
                         {...form.getInputProps('done', { type: 'checkbox' })}
                     />
                     <Group justify="flex-end" mt="md">
-                        <Button type="submit">Zatwierdz</Button>
+                        <Button style={{textAlign:"right"}}
+                                variant="gradient"
+                                gradient={{ from: 'red', to: 'blue', deg: 270 }}
+                                type="submit">Zatwierdź
+                        </Button>
                     </Group>
                 </Stack>
             </form>
