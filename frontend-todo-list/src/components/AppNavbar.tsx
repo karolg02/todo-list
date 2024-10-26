@@ -1,5 +1,5 @@
 import {IconListCheck, IconLogout, IconPencilPlus} from "@tabler/icons-react";
-import {NavLink} from "@mantine/core";
+import {NavLink, Text} from "@mantine/core";
 import {useNavigate} from "react-router-dom";
 import {logout} from "../features/todo/api/logout.ts";
 
@@ -24,6 +24,9 @@ export const AppNavbar = () => {
                 label="Wyloguj"
                 leftSection={<IconLogout size="1rem" stroke={1.5} />}
             />
+            <Text
+                style={{position: 'fixed', bottom: 2, left: "auto"}}
+            >Autor: Karol Glanowski</Text>
         </div>
     )
 }

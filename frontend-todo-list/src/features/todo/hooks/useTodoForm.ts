@@ -16,7 +16,7 @@ export const useTodoForm = () =>{
                 }
             },
             content: (value) => {
-                if (value.length < 10) {
+                if (value.length < 1) {
                     return "Description must be at least 10 characters long";
                 }
             }

@@ -29,7 +29,7 @@ export const TodoListItem = ({ item }: TodoListItemProps) => {
                 fw={500}
                 size="lg"
                 mt="md"
-                color={item.done ? "green" : "grey"}
+                color={item.done ? "black" : "green"}
             >
                 {item.title}
             </Text>
@@ -45,27 +45,30 @@ export const TodoListItem = ({ item }: TodoListItemProps) => {
                     }}
                     onClick={() => changeTodoDone(item.id)}
                     variant="gradient"
-                    gradient={item.done ? { from: 'blue', to: 'green', deg: 270 } : { from: 'grey', to: 'grey', deg: 0 }}
+                    gradient={item.done ? { from: 'grey', to: 'grey', deg: 270 } : { from: 'blue', to: 'green', deg: 270 }}
                     size="md"
                 >
-                    {item.done ? "Zrobione" : "Nie zrobione"}
+                    {item.done ? "Zrobiono!" : "Nie zrobiono"}
                 </Button>
 
-                <Button variant="filled" size="md"
+                <Button
                         style={{
                             width: "25%",
                         }}
-                        onClick={() => navigate(`/todo/edit/${item.id}`)} // Navigate to edit page
+                        onClick={() => navigate(`/todo/edit/${item.id}`)}
+                        variant="gradient"
+                        gradient={item.done ? { from: 'grey', to: 'grey', deg: 270 } : { from: 'red', to: 'blue', deg: 270 }}
+                        size="md"// Navigate to edit page
                 >
                     Edytuj
                 </Button>
 
-                <Button variant="filled" size="md"
+                <Button variant="gradient" size="md"
                         style={{
-                            backgroundColor: "indianred",
                             color: "black",
                             width: "20%",
                         }}
+                        gradient={{ from: 'pink', to: 'red', deg: 270 }}
                         onClick={() => deleteTodo(item.id)}
 
                 >
