@@ -4,7 +4,7 @@ export const notificationsTodo = () => {
     notifications.show({
         color: 'green',
         title: 'Success',
-        message: 'Todo item added successfully!',
+        message: 'Todo dodano pomyślnie!',
         autoClose: 2000,
     });
 };
@@ -13,7 +13,7 @@ export const notificationDeletedTodo = () => {
     notifications.show({
         color: 'green',
         title: 'Success',
-        message: 'Todo deleted successfully!',
+        message: 'Todo usunięto pomyślnie!',
         autoClose: 2000,
     })
 }

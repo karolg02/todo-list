@@ -1,6 +1,6 @@
 import {FC} from 'react';
 import {useForm} from "@mantine/form";
-import {Button, Stack, TextInput} from "@mantine/core";
+import {Button, Paper, Stack, TextInput,Text, Container, Center} from "@mantine/core";
 import {loginErrorNotification} from "./notifications.ts";
 import {login} from "./api/login.ts";
 import {useNavigate} from "react-router-dom";
@@ -25,22 +25,73 @@ export const LoginPage: FC = () => {
             await login(data.email, data.password);
             navigate('/todo');
         } catch (error) {
-            console.error("Error during login:", error); // Logowanie błędu
-            loginErrorNotification(); // Wywołanie powiadomienia o błędzie
+            console.error("Error during login:", error);
+            loginErrorNotification();
         }
     };
 
 
     return (
-        <div style={{width:'100%'}}>
-            <form onSubmit={form.onSubmit(values => handleSubmit(values))}>
-                <Stack gap="md">
-                    <TextInput required type="email" label="Email"{...form.getInputProps('email')} />
-                    <TextInput required type='password' label="Password" {...form.getInputProps('password')} />
-                    <Button type="submit">Login</Button>
-                </Stack>
-            </form>
-            <Notifications/>
+        <div
+            style={{
+                backgroundColor: 'rgb(236,236,236)'}}
+        >
+        <Container
+            size="xs"
+        >
+            <Center style={{ minHeight: '100vh'}}>
+                <Paper shadow="xl" radius="md" p="xl" withBorder>
+                    <Text
+                        size="xl"
+                        fw={900}
+                        variant="gradient"
+                        gradient={{ from: 'blue', to: 'green', deg: 90 }}
+                        mb="lg"
+                        style={{ textAlign: 'center' }}
+                    >
+                        Witaj w yourTodo.com
+                    </Text>
+                    <form onSubmit={form.onSubmit(values => handleSubmit(values))}>
+                        <Stack style={{minWidth: "18vW"}}>
+                            <TextInput
+                                required
+                                label="Email"
+                                placeholder="Enter your email"
+                                {...form.getInputProps('email')}
+                            />
+                            <TextInput
+                                required
+                                type='password'
+                                label="Password"
+                                placeholder="Enter your password"
+                                {...form.getInputProps('password')}
+                            />
+                            <Button
+                                variant="gradient"
+                                gradient={{ from: 'blue', to: 'green', deg: 90 }}
+                                type="submit"
+                                fullWidth
+                            >
+                                Zaloguj się
+                            </Button>
+                            <Stack align="center">
+                                <Text>Nie masz konta?</Text>
+                                <Text>Kliknij przycisk poniżej!</Text>
+                            </Stack>
+                            <Button
+                                variant="gradient"
+                                gradient={{ from: 'blue', to: 'green', deg: 270 }}
+                                onClick={() => console.log("Rejestracja XD")}
+                                fullWidth
+                            >
+                                Zarejestruj się
+                            </Button>
+                        </Stack>
+                    </form>
+                    <Notifications style={{ position: 'fixed', bottom: 0, right: 0 }} />
+                </Paper>
+            </Center>
+        </Container>
         </div>
     );
 }

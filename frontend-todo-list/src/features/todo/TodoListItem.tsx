@@ -1,21 +1,18 @@
-import { Button, Card, Image, Text } from "@mantine/core";
-import { TodoType } from "../../types/TodoType";
-import { CSSProperties } from "react";
-import { deleteTodo } from "./api/deleteTodo.ts";
-import { useNavigate } from "react-router-dom";
-import {Notifications} from "@mantine/notifications"; // Import useNavigate
+import {Button, Card, Image, Text} from "@mantine/core";
+import {TodoType} from "../../types/TodoType";
+import {deleteTodo} from "./api/deleteTodo.ts";
+import {useNavigate} from "react-router-dom";
+import {Notifications} from "@mantine/notifications";
+import {changeTodoDone} from "./api/changeTodoDone.ts";
+import {IconTrash} from "@tabler/icons-react"; // Import useNavigate
 
 interface TodoListItemProps {
     item: TodoType;
     onToggleDone: (id: number) => void;
 }
 
-export const TodoListItem = ({ item, onToggleDone }: TodoListItemProps) => {
+export const TodoListItem = ({ item }: TodoListItemProps) => {
     const navigate = useNavigate(); // Initialize navigate
-
-    const style: CSSProperties | undefined = item.done
-        ? { border: "2px solid", borderColor: "rgb(82,173,47)" }
-        : undefined;
 
     return (
         <Card shadow="sm" padding="lg" radius="md" withBorder>
@@ -25,11 +22,15 @@ export const TodoListItem = ({ item, onToggleDone }: TodoListItemProps) => {
                     src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"
                     height={200}
                     alt="No way!"
-                    style={style}
                 />
             </Card.Section>
 
-            <Text fw={500} size="lg" mt="md">
+            <Text
+                fw={500}
+                size="lg"
+                mt="md"
+                color={item.done ? "green" : "grey"}
+            >
                 {item.title}
             </Text>
 
@@ -42,9 +43,9 @@ export const TodoListItem = ({ item, onToggleDone }: TodoListItemProps) => {
                     style={{
                         width: "50%",
                     }}
-                    onClick={() => onToggleDone(item.id)}
-                    variant="filled"
-                    color={item.done ? "gray" : "teal"}
+                    onClick={() => changeTodoDone(item.id)}
+                    variant="gradient"
+                    gradient={item.done ? { from: 'blue', to: 'green', deg: 270 } : { from: 'grey', to: 'grey', deg: 0 }}
                     size="md"
                 >
                     {item.done ? "Zrobione" : "Nie zrobione"}
@@ -66,8 +67,9 @@ export const TodoListItem = ({ item, onToggleDone }: TodoListItemProps) => {
                             width: "20%",
                         }}
                         onClick={() => deleteTodo(item.id)}
+
                 >
-                    Usuń
+                    <IconTrash size="1.2rem" stroke={1.5}/>
                 </Button>
             </div>
         </Card>

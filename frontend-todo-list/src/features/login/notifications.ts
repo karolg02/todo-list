@@ -5,5 +5,6 @@ export const loginErrorNotification = () => {
         color: 'red',
         title: 'Error',
         message: 'Login failed',
+        autoClose: 2000
     });
 }

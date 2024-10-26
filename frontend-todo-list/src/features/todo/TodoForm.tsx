@@ -20,7 +20,7 @@ export const TodoForm = () => {
 
     return (
         <Paper shadow="xs" p="xl" style={{ position: 'relative' }}>
-            <Notifications style={{ position: 'absolute', bottom: 0, right: 0 }} />
+            <Notifications style={{ position: 'fixed', bottom: 0, right: 0 }} />
             <form onSubmit={form.onSubmit(handleSubmit)}>
                 <Stack gap={"lg"}>
                     <TextInput

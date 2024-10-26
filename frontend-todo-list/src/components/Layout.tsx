@@ -30,9 +30,10 @@ export const Layout = ()=>{
                 <AppNavbar/>
             </AppShell.Navbar>
 
-            <AppShell.Main>
-                <Outlet/>
+            <AppShell.Main style={{backgroundColor: 'rgb(236,236,236)'}}>
+                <Outlet />
             </AppShell.Main>
+
         </AppShell>
     )
 }
